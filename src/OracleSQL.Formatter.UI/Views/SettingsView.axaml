@@ -1,0 +1,32 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:OracleSQL.Formatter.UI.ViewModels"
+             x:Class="OracleSQL.Formatter.UI.Views.SettingsView"
+             x:DataType="vm:SettingsViewModel">
+  <Grid Margin="12" Background="{Binding PanelBackground}">
+    <Border Background="{Binding CardBackground}" CornerRadius="8" Padding="16">
+      <StackPanel Spacing="14">
+        <TextBlock Text="設定" FontSize="18" FontWeight="Bold" Foreground="{Binding TextForeground}"/>
+
+        <!-- Theme row -->
+        <StackPanel Orientation="Horizontal" Spacing="12" VerticalAlignment="Center">
+          <TextBlock Text="主題" VerticalAlignment="Center" Foreground="{Binding TextForeground}" FontSize="13" Width="80"/>
+          <Border CornerRadius="6" Background="{Binding ControlBackground}" Padding="6" HorizontalAlignment="Left">
+            <ComboBox ItemsSource="{Binding ThemeModes}" SelectedItem="{Binding CurrentTheme, Mode=TwoWay}" MinWidth="160"/>
+          </Border>
+        </StackPanel>
+
+        <!-- Language row -->
+        <StackPanel Orientation="Horizontal" Spacing="12" VerticalAlignment="Center">
+          <TextBlock Text="語言" VerticalAlignment="Center" Foreground="{Binding TextForeground}" FontSize="13" Width="80"/>
+          <Border CornerRadius="6" Background="{Binding ControlBackground}" Padding="6" HorizontalAlignment="Left">
+            <ComboBox ItemsSource="{Binding Languages}" SelectedItem="{Binding CurrentLanguage, Mode=TwoWay}" MinWidth="160"/>
+          </Border>
+        </StackPanel>
+
+        <!-- small hint -->
+        <TextBlock Text="變更會立即套用並自動儲存" FontSize="12" Foreground="{Binding TextForeground}" Opacity="0.7"/>
+      </StackPanel>
+    </Border>
+  </Grid>
+</UserControl>

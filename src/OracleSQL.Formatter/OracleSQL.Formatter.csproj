@@ -1,0 +1,40 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <!-- Use ICO for ApplicationIcon to ensure Windows uses it -->
+    <ApplicationIcon>..\OracleSQL.Formatter.UI\Assets\images\logo.ico</ApplicationIcon>
+    <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+    <PackageIcon>logo.png</PackageIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="..\OracleSQL.Formatter.UI\Assets\images\logo.ico">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+    <ItemGroup>
+	    <!-- Include any images placed under Assets/ as Avalonia resources -->
+	    <AvaloniaResource Include="Assets\\**\\*.*" />
+    </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Avalonia" Version="11.3.5" />
+    <PackageReference Include="Avalonia.Desktop" Version="11.3.5" />
+    <PackageReference Include="Avalonia.Themes.Fluent" Version="11.3.5" />
+    <PackageReference Include="Avalonia.ReactiveUI" Version="11.3.5" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\OracleSQL.Formatter.UI\OracleSQL.Formatter.UI.csproj" />
+    <ProjectReference Include="..\OracleSQL.Formatter.Core\OracleSQL.Formatter.Core.csproj" />
+    <ProjectReference Include="..\OracleSQL.Formatter.Common\OracleSQL.Formatter.Common.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="Assets\images\logo.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+</Project>

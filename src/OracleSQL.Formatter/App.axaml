@@ -1,0 +1,18 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:fluent="clr-namespace:Avalonia.Themes.Fluent;assembly=Avalonia.Themes.Fluent"
+             xmlns:conv="clr-namespace:OracleSQL.Formatter.UI.Converters;assembly=OracleSQL.Formatter.UI"
+             x:Class="OracleSQL.Formatter.App"
+             RequestedThemeVariant="Dark">
+  <Application.Resources>
+    <conv:CaseOptionToLocalizedTextConverter x:Key="CaseOptionText" />
+  </Application.Resources>
+  <Application.Styles>
+    <fluent:FluentTheme />
+    <!-- 全域中文字型與字級：控制項一般 12，右側面板將再覆蓋為 12（若之前有 10 需求可改） -->
+    <Style Selector="Control">
+      <Setter Property="TextElement.FontFamily" Value="'Source Han Sans TC','Source Han Sans SC','Source Han Sans','Noto Sans CJK TC','Noto Sans CJK SC','Microsoft JhengHei','Segoe UI',sans-serif"/>
+      <Setter Property="TextElement.FontSize" Value="12"/>
+    </Style>
+  </Application.Styles>
+</Application>

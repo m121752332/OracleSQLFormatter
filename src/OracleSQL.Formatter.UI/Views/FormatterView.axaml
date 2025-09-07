@@ -1,0 +1,214 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:OracleSQL.Formatter.UI.ViewModels"
+             xmlns:conv="clr-namespace:OracleSQL.Formatter.UI.Converters;assembly=OracleSQL.Formatter.UI"
+             xmlns:enums="clr-namespace:OracleSQL.Formatter.Common.Enums;assembly=OracleSQL.Formatter.Common"
+             x:Class="OracleSQL.Formatter.UI.Views.FormatterView"
+             x:DataType="vm:FormatterViewModel">
+  <UserControl.Resources>
+    <conv:CaseOptionToLocalizedTextConverter x:Key="CaseOptionText" />
+    <conv:OptionKeyToLocalizedTextConverter x:Key="OptionKeyText" />
+  </UserControl.Resources>
+  <!-- 左 80%：輸入/工具列/輸出 垂直排列；右 20%：格式配置 -->
+  <Grid ColumnDefinitions="3*, *" Margin="12">
+
+    <!-- 右側設定（20%） -->
+    <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto" Margin="12,0,0,0">
+      <StackPanel Spacing="10" MinWidth="220">
+        <TextBlock Text="格式配置" FontWeight="Bold" FontSize="14"/>
+        <Separator/>
+
+        <!-- 關鍵字大小寫 -->
+        <StackPanel ToolTip.Tip="設定關鍵字（SELECT、FROM...）的大小寫樣式">
+          <TextBlock Text="關鍵字大小寫" FontSize="12"/>
+          <ComboBox FontSize="12" ItemsSource="{Binding CaseOptions}" SelectedItem="{Binding Options.KeywordCase, Mode=TwoWay}">
+            <ComboBox.ItemTemplate>
+              <DataTemplate x:DataType="enums:CaseOption">
+                <TextBlock Text="{Binding Converter={StaticResource CaseOptionText}}" FontSize="12"/>
+              </DataTemplate>
+            </ComboBox.ItemTemplate>
+          </ComboBox>
+        </StackPanel>
+
+        <!-- 名稱大小寫類別 -->
+        <StackPanel ToolTip.Tip="設定資料表名稱的大小寫">
+          <TextBlock Text="資料表名稱大小寫" FontSize="12"/>
+          <ComboBox FontSize="12" ItemsSource="{Binding CaseOptions}" SelectedItem="{Binding Options.TableCase, Mode=TwoWay}">
+            <ComboBox.ItemTemplate>
+              <DataTemplate x:DataType="enums:CaseOption">
+                <TextBlock Text="{Binding Converter={StaticResource CaseOptionText}}" FontSize="12"/>
+              </DataTemplate>
+            </ComboBox.ItemTemplate>
+          </ComboBox>
+        </StackPanel>
+        <StackPanel ToolTip.Tip="設定欄位名稱的大小寫">
+          <TextBlock Text="欄位名稱大小寫" FontSize="12"/>
+          <ComboBox FontSize="12" ItemsSource="{Binding CaseOptions}" SelectedItem="{Binding Options.ColumnCase, Mode=TwoWay}">
+            <ComboBox.ItemTemplate>
+              <DataTemplate x:DataType="enums:CaseOption">
+                <TextBlock Text="{Binding Converter={StaticResource CaseOptionText}}" FontSize="12"/>
+              </DataTemplate>
+            </ComboBox.ItemTemplate>
+          </ComboBox>
+        </StackPanel>
+        <StackPanel ToolTip.Tip="設定函數名稱的大小寫">
+          <TextBlock Text="函數名稱大小寫" FontSize="12"/>
+          <ComboBox FontSize="12" ItemsSource="{Binding CaseOptions}" SelectedItem="{Binding Options.FunctionCase, Mode=TwoWay}">
+            <ComboBox.ItemTemplate>
+              <DataTemplate x:DataType="enums:CaseOption">
+                <TextBlock Text="{Binding Converter={StaticResource CaseOptionText}}" FontSize="12"/>
+              </DataTemplate>
+            </ComboBox.ItemTemplate>
+          </ComboBox>
+        </StackPanel>
+        <StackPanel ToolTip.Tip="設定資料型別的大小寫">
+          <TextBlock Text="資料型別大小寫" FontSize="12"/>
+          <ComboBox FontSize="12" ItemsSource="{Binding CaseOptions}" SelectedItem="{Binding Options.DataTypeCase, Mode=TwoWay}">
+            <ComboBox.ItemTemplate>
+              <DataTemplate x:DataType="enums:CaseOption">
+                <TextBlock Text="{Binding Converter={StaticResource CaseOptionText}}" FontSize="12"/>
+              </DataTemplate>
+            </ComboBox.ItemTemplate>
+          </ComboBox>
+        </StackPanel>
+        <StackPanel ToolTip.Tip="設定變數名稱的大小寫">
+          <TextBlock Text="變數大小寫" FontSize="12"/>
+          <ComboBox FontSize="12" ItemsSource="{Binding CaseOptions}" SelectedItem="{Binding Options.VariableCase, Mode=TwoWay}">
+            <ComboBox.ItemTemplate>
+              <DataTemplate x:DataType="enums:CaseOption">
+                <TextBlock Text="{Binding Converter={StaticResource CaseOptionText}}" FontSize="12"/>
+              </DataTemplate>
+            </ComboBox.ItemTemplate>
+          </ComboBox>
+        </StackPanel>
+        <StackPanel ToolTip.Tip="設定別名（Alias）的大小寫">
+          <TextBlock Text="別名大小寫" FontSize="12"/>
+          <ComboBox FontSize="12" ItemsSource="{Binding CaseOptions}" SelectedItem="{Binding Options.AliasCase, Mode=TwoWay}">
+            <ComboBox.ItemTemplate>
+              <DataTemplate x:DataType="enums:CaseOption">
+                <TextBlock Text="{Binding Converter={StaticResource CaseOptionText}}" FontSize="12"/>
+              </DataTemplate>
+            </ComboBox.ItemTemplate>
+          </ComboBox>
+        </StackPanel>
+        <StackPanel ToolTip.Tip="設定加上引號的識別字大小寫">
+          <TextBlock Text="引號識別字大小寫" FontSize="12"/>
+          <ComboBox FontSize="12" ItemsSource="{Binding CaseOptions}" SelectedItem="{Binding Options.QuotedIdentifierCase, Mode=TwoWay}">
+            <ComboBox.ItemTemplate>
+              <DataTemplate x:DataType="enums:CaseOption">
+                <TextBlock Text="{Binding Converter={StaticResource CaseOptionText}}" FontSize="12"/>
+              </DataTemplate>
+            </ComboBox.ItemTemplate>
+          </ComboBox>
+        </StackPanel>
+        <StackPanel ToolTip.Tip="設定其他識別字（如變數、程式區塊等）的大小寫">
+          <TextBlock Text="其他識別字大小寫" FontSize="12"/>
+          <ComboBox FontSize="12" ItemsSource="{Binding CaseOptions}" SelectedItem="{Binding Options.OtherIdentifierCase, Mode=TwoWay}">
+            <ComboBox.ItemTemplate>
+              <DataTemplate x:DataType="enums:CaseOption">
+                <TextBlock Text="{Binding Converter={StaticResource CaseOptionText}}" FontSize="12"/>
+              </DataTemplate>
+            </ComboBox.ItemTemplate>
+          </ComboBox>
+        </StackPanel>
+
+        <Separator/>
+
+        <!-- 其他選項（繼承全域字級 12） -->
+        <StackPanel Orientation="Horizontal" Spacing="8" ToolTip.Tip="每一行的最大長度，超過將嘗試換行">
+          <TextBlock Text="最大列長度" VerticalAlignment="Center" FontSize="12"/>
+          <NumericUpDown Minimum="20" Maximum="240" Value="{Binding Options.MaxLineLength, Mode=TwoWay}"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Spacing="8" ToolTip.Tip="選擇逗號於每列的擺放位置">
+          <TextBlock Text="逗號換行位置" VerticalAlignment="Center" FontSize="12"/>
+          <ComboBox FontSize="12" ItemsSource="{Binding CommaOptions}" SelectedItem="{Binding Options.CommaPosition, Mode=TwoWay}">
+            <ComboBox.ItemTemplate>
+              <DataTemplate x:DataType="x:String">
+                <TextBlock Text="{Binding Converter={StaticResource OptionKeyText}, ConverterParameter=Comma}" FontSize="12"/>
+              </DataTemplate>
+            </ComboBox.ItemTemplate>
+          </ComboBox>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Spacing="8" ToolTip.Tip="清單與參數是否逐列堆疊顯示">
+          <TextBlock Text="清單與參數樣式" VerticalAlignment="Center" FontSize="12"/>
+          <ComboBox FontSize="12" ItemsSource="{Binding ListStyleOptions}" SelectedItem="{Binding Options.ListStyle, Mode=TwoWay}">
+            <ComboBox.ItemTemplate>
+              <DataTemplate x:DataType="x:String">
+                <TextBlock Text="{Binding Converter={StaticResource OptionKeyText}, ConverterParameter=ListStyle}" FontSize="12"/>
+              </DataTemplate>
+            </ComboBox.ItemTemplate>
+          </ComboBox>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Spacing="8" ToolTip.Tip="對齊方式">
+          <TextBlock Text="對齊" VerticalAlignment="Center" FontSize="12"/>
+          <ComboBox FontSize="12" ItemsSource="{Binding AlignOptions}" SelectedItem="{Binding Options.Align, Mode=TwoWay}">
+            <ComboBox.ItemTemplate>
+              <DataTemplate x:DataType="x:String">
+                <TextBlock Text="{Binding Converter={StaticResource OptionKeyText}, ConverterParameter=Align}" FontSize="12"/>
+              </DataTemplate>
+            </ComboBox.ItemTemplate>
+          </ComboBox>
+        </StackPanel>
+        <CheckBox Content="AND/OR 於 WHERE 之下" IsChecked="{Binding Options.AndOrUnderWhere, Mode=TwoWay}" FontSize="12"/>
+        <CheckBox Content="格式化前移除換行" IsChecked="{Binding Options.RemoveExistingNewLines, Mode=TwoWay}" FontSize="12"/>
+        <CheckBox Content="每行移除包裹引號" IsChecked="{Binding Options.TrimQuotesEachLine, Mode=TwoWay}" FontSize="12"/>
+        <CheckBox Content="精簡模式" IsChecked="{Binding Options.CompactMode, Mode=TwoWay}" FontSize="12"/>
+        <StackPanel Orientation="Horizontal" Spacing="8" ToolTip.Tip="精簡模式下的最大列長度">
+          <TextBlock Text="精簡模式最大列長度" VerticalAlignment="Center" FontSize="12"/>
+          <NumericUpDown Minimum="20" Maximum="240" Value="{Binding Options.CompactModeMaxLineLength, Mode=TwoWay}"/>
+        </StackPanel>
+      </StackPanel>
+    </ScrollViewer>
+
+    <!-- 左側：輸入（上）、工具列（中）、輸出（下） -->
+    <Grid Grid.Column="0" RowDefinitions="*, Auto, *" Margin="0,0,12,0">
+      <!-- 上：輸入 SQL -->
+      <Grid RowDefinitions="Auto, *">
+        <DockPanel>
+          <TextBlock Text="輸入 SQL" FontSize="14" VerticalAlignment="Center"/>
+          <Button Content="清除" DockPanel.Dock="Right" Command="{Binding ClearInputCommand}"/>
+        </DockPanel>
+        <Border Grid.Row="1" BorderBrush="#555" BorderThickness="1" CornerRadius="4">
+          <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+            <TextBox
+              TextWrapping="Wrap"
+              AcceptsReturn="True"
+              AcceptsTab="True"
+              VerticalAlignment="Stretch"
+              HorizontalAlignment="Stretch"
+              FontFamily="Consolas, 'Cascadia Code', 'JetBrains Mono', 'DejaVu Sans Mono', 'Liberation Mono', monospace"
+              Text="{Binding Input, Mode=TwoWay}"/>
+          </ScrollViewer>
+        </Border>
+      </Grid>
+
+      <!-- 中：工具列（置於中間） -->
+      <StackPanel Grid.Row="1" Orientation="Horizontal" Spacing="8" Margin="0,8">
+        <Button Content="格式化" Command="{Binding FormatCommand}"/>
+        <Button Content="清空" Command="{Binding ClearCommand}"/>
+        <Button Content="複製" Command="{Binding CopyCommand}"/>
+      </StackPanel>
+
+      <!-- 下：輸出 SQL -->
+      <Grid Grid.Row="2" RowDefinitions="Auto, *">
+        <DockPanel>
+          <TextBlock Text="輸出 SQL" FontSize="14" VerticalAlignment="Center"/>
+          <Button Content="清除" DockPanel.Dock="Right" Command="{Binding ClearOutputCommand}"/>
+        </DockPanel>
+        <Border Grid.Row="1" BorderBrush="#555" BorderThickness="1" CornerRadius="4">
+          <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+            <TextBox
+              TextWrapping="Wrap"
+              AcceptsReturn="True"
+              AcceptsTab="True"
+              IsReadOnly="True"
+              VerticalAlignment="Stretch"
+              HorizontalAlignment="Stretch"
+              FontFamily="Consolas, 'Cascadia Code', 'JetBrains Mono', 'DejaVu Sans Mono', 'Liberation Mono', monospace"
+              Text="{Binding Output}"/>
+          </ScrollViewer>
+        </Border>
+      </Grid>
+    </Grid>
+  </Grid>
+</UserControl>

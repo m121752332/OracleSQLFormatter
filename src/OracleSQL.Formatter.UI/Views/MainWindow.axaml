@@ -1,0 +1,62 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:OracleSQL.Formatter.UI.ViewModels"
+        xmlns:views="clr-namespace:OracleSQL.Formatter.UI.Views"
+        xmlns:conv="clr-namespace:OracleSQL.Formatter.UI.Converters;assembly=OracleSQL.Formatter.UI"
+        x:Class="OracleSQL.Formatter.UI.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Width="1100" Height="750">
+  <Window.Resources>
+    <!-- narrower open width for a compact sidebar -->
+    <conv:BoolToSidebarWidthConverter x:Key="SidebarWidth" OpenWidth="114" ClosedWidth="50" />
+  </Window.Resources>
+  <Window.DataTemplates>
+    <DataTemplate DataType="{x:Type vm:FormatterViewModel}">
+      <views:FormatterView />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:SettingsViewModel}">
+      <views:SettingsView />
+    </DataTemplate>
+  </Window.DataTemplates>
+
+  <Grid x:Name="RootGrid" RowDefinitions="Auto, *" Background="{Binding Settings.PanelBackground}">
+    <!-- Header -->
+    <Border x:Name="HeaderBorder" Background="{Binding Settings.CardBackground}" Padding="10">
+      <DockPanel>
+        <Button Content="☰" Width="36" Height="32" Command="{Binding ToggleSidebarCommand}"/>
+        <!-- Use actual asset path under Assets/images -->
+        <Image Source="avares://OracleSQL.Formatter.UI/Assets/images/logo.png" Width="28" Height="28" Margin="8,0,8,0"/>
+        <TextBlock x:Name="HeaderTitle" Text="Oracle SQL Formatter" Foreground="{Binding Settings.TextForeground}" FontSize="18" Margin="8,0,0,0" VerticalAlignment="Center"/>
+      </DockPanel>
+    </Border>
+
+    <!-- Body -->
+    <Grid Grid.Row="1" ColumnDefinitions="Auto, *">
+      <!-- Sidebar with width binding -->
+      <Border x:Name="SidebarBorder" Background="{Binding Settings.ControlBackground}" Width="{Binding IsSidebarOpen, Converter={StaticResource SidebarWidth}}">
+        <StackPanel Margin="6" Spacing="6">
+          <TextBlock x:Name="SidebarHeader" Text="功能" Foreground="{Binding Settings.TextForeground}" FontSize="12" Margin="6,4,0,4" IsVisible="{Binding IsSidebarOpen}"/>
+
+          <!-- Menu item template: compact grid with fixed icon column -->
+          <Button x:Name="BeautifierButton" Command="{Binding ShowFormatterCommand}" HorizontalContentAlignment="Stretch" Padding="6" Background="Transparent" BorderBrush="Transparent" ToolTip.Tip="Beautifier">
+            <Grid ColumnDefinitions="28, *" VerticalAlignment="Center">
+              <TextBlock Text="📝" FontSize="14" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{Binding Settings.TextForeground}"/>
+              <TextBlock x:Name="BeautifierLabel" Text="美化器" Grid.Column="1" VerticalAlignment="Center" Margin="8,0,0,0" IsVisible="{Binding IsSidebarOpen}" Foreground="{Binding Settings.TextForeground}"/>
+            </Grid>
+          </Button>
+
+          <Button x:Name="SettingsButton" Command="{Binding ShowSettingsCommand}" HorizontalContentAlignment="Stretch" Padding="6" Background="Transparent" BorderBrush="Transparent" ToolTip.Tip="Settings">
+            <Grid ColumnDefinitions="28, *" VerticalAlignment="Center">
+              <TextBlock Text="⚙" FontSize="14" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{Binding Settings.TextForeground}"/>
+              <TextBlock x:Name="SettingsLabel" Text="設定" Grid.Column="1" VerticalAlignment="Center" Margin="8,0,0,0" IsVisible="{Binding IsSidebarOpen}" Foreground="{Binding Settings.TextForeground}"/>
+            </Grid>
+          </Button>
+
+        </StackPanel>
+      </Border>
+
+      <!-- Content -->
+      <ContentControl Grid.Column="1" Content="{Binding CurrentView}"/>
+    </Grid>
+  </Grid>
+</Window>
