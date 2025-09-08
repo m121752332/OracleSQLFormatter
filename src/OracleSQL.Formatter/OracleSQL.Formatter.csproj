@@ -21,10 +21,10 @@
 	    <AvaloniaResource Include="Assets\\**\\*.*" />
     </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Avalonia" Version="11.3.5" />
-    <PackageReference Include="Avalonia.Desktop" Version="11.3.5" />
-    <PackageReference Include="Avalonia.Themes.Fluent" Version="11.3.5" />
-    <PackageReference Include="Avalonia.ReactiveUI" Version="11.3.5" />
+    <PackageReference Include="Avalonia" Version="$(AvaloniaVersion)" />
+    <PackageReference Include="Avalonia.Desktop" Version="$(AvaloniaVersion)" />
+    <PackageReference Include="Avalonia.Themes.Fluent" Version="$(AvaloniaVersion)" />
+    <PackageReference Include="Avalonia.ReactiveUI" Version="$(AvaloniaVersion)" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OracleSQL.Formatter.UI\OracleSQL.Formatter.UI.csproj" />

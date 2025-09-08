@@ -21,7 +21,17 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OracleSQL.Formatter.UI.Test
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "方案項目", "方案項目", "{8DDC4786-5FC8-F15C-1CA5-9F41FD4BEB75}"
 	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
 		.mcp.json = .mcp.json
+		Directory.Build.props = Directory.Build.props
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{208BA388-4CEE-2CBF-559C-5607C099C1F8}"
+	ProjectSection(SolutionItems) = preProject
+		docs\API_DOCUMENTATION.md = docs\API_DOCUMENTATION.md
+		docs\README.md = docs\README.md
+		docs\SPEC.md = docs\SPEC.md
 	EndProjectSection
 EndProject
 Global
